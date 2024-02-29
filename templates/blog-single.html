@@ -1,0 +1,127 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 text-center ftco-animate pt-5">
+                <h1 class="mb-3 bread">Our Blog</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
+                    <span class="mr-2"><a href="/blog">Blog <i class="fa fa-chevron-right"></i></a></span> <span>Blog Details<i
+                            class="fa fa-chevron-right"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container-fluid px-md-4">
+        <div class="row no-gutters">
+            <div class="col-md-12 blog-wrap">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6 img img-blog js-fullheight"
+                         style="background-image: url({{ post.image.url }});">
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="text p-md-5 py-5 px-4 ftco-animate">
+                            <p class="meta">
+                                <a href="#"><span class="fa fa-calendar mr-2"></span>{{ post.created_at }}</a>
+                                <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
+                                <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+                            </p>
+                            <h2 class="mb-4"><a href="/blog/{{ blog.id }}/">{{ post.title }}</a></h2>
+                            <div class="icon d-flex align-items-center">
+                                <div class="img"
+                                     style="background-image: url();"></div>
+                                <div class="position pl-3">
+                                    <h4 class="mb-0">{{ post.title }}</h4>
+                                    <span>{{ post.content | safe }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tag-widget post-tag-container mb-5 mt-5">
+                            <div class="tagcloud">
+                                <a href="/blog/?cat={{ post.category.id }}" class="tag-cloud-link">{{ post.category.name }}</a>
+                            </div>
+                        </div>
+                        <div class="comment-post py-5">
+                            <h3 class="mb-5">{{ comments.count }} Comments</h3>
+                            <ul class="comment-list">
+                                {% for comment in comments %}
+                                <li class="comment">
+                                    <div class="vcard bio">
+                                        <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>{{ comment.name }}</h3>
+                                        <div class="meta">{{ comment.created_at }}</div>
+                                        <p>{{ comment.message }}</p>
+                                        <p><a href="#" class="reply">Reply</a></p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                        <div class="comment-form-wrap pt-5">
+                            <h3 class="mb-5">Leave a comment</h3>
+                            <form method="post" action="" class="p-5 comment-form">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Name *</label>
+                                            <input  type="text" name="name" class="form-control" id="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email *</label>
+                                            <input  type="email" name="email" class="form-control" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="message">Message</label>
+                                            <textarea name="message" id="message" cols="30" rows="10"
+                                                      class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="submit" class="btn py-3 px-4 btn-primary">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+<section class="ftco-intro ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <h2>Subscribe to our Newsletter</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+{% endblock %}
+

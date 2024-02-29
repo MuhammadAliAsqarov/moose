@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="hero-wrap hero-wrap-2">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 text-center ftco-animate pt-5">
+                <h1 class="mb-3 bread">Our Blog</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i
+                        class="fa fa-chevron-right"></i></a></span>
+                    <span>Blog <i class="fa fa-chevron-right"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container-fluid">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-6 col-lg-4 blog-wrap blog-wrap-2 px-md-5 ftco-animate">
+                <a href="/blog/{{ post.id }}/" class="img img-blog w-100 border d-block"
+                   style="background-image: url({{ post.image.url }});">
+                </a>
+                <div class="text text-2 py-4 p-0 ftco-animate">
+                    <p class="meta">
+                        <a href="#"><span class="fa fa-calendar mr-2"></span></a>
+                        <a href="#"><span class="fa fa-user mr-2"></span></a>
+                        <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span>{{ post.created_at }}</a>
+                    </p>
+                    <h2 class="mb-4"><a href="/blog/{{ post.id }}/">{{ post.title }}</a>
+                    </h2>
+                    <div class="icon d-flex align-items-center">
+                        <div class="img" style="background-image: url({{ post.author_image.url }});"></div>
+                        <div class="position pl-3">
+                            <h4 class="mb-0">{{ post.author }}</h4>
+                            <span>{{ post.author_job }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <div class="block-27">
+                    <ul>
+                        <li><a href="#">&lt;</a></li>
+                        <li class="active"><span>1</span></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-intro ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <h2>Subscribe to our Newsletter</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
