@@ -1,0 +1,116 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-wrap py-md-4">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters justify-content-center slider-text align-items-center" data-scrollax-parent="true">
+            <div class="col-md-10 ftco-animate py-5">
+                <h1 class="text-center">M<span>oo</span>se</h1>
+                <div class="row pb-md-5">
+                    <div class="col-md-8">
+                        <h2>Hello! I'm Giller Moose, I Provide Newest News Update About Digital</h2>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="author">
+                            <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                            <div class="text">
+                                <h3>Giller Moose</h3>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section ftco-no-pb ftco-no-pt">
+    <div class="container-fluid px-md-4">
+        <div class="row no-gutters">
+            {% for post in posts %}
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-md-12 blog-wrap">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6 img img-blog js-fullheight" style="background-image: url({{ post.image.url }});">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text p-md-5 py-5 px-4 ftco-animate">
+                            <p class="meta">
+                                <a href="#"><span class="fa fa-calendar mr-2"></span>{{ post.created_at }}</a>
+                                <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
+                                <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+                            </p>
+                            <h2 class="mb-4"><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h2>
+                            <div class="icon d-flex align-items-center">
+                                <div class="img" style="background-image: url({{ post.author_image.url }});"></div>
+                                <div class="position pl-3">
+                                    <h4 class="mb-0">{{ post.author }}</h4>
+                                    <span>{{ post.author_job }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-12 blog-wrap bg-darken">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6 img img-blog js-fullheight order-md-last"
+                         style="background-image: url({{ post.image.url }});">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text p-md-5 py-5 px-4 ftco-animate">
+                            <p class="meta">
+                                <a href="#"><span class="fa fa-calendar mr-2"></span>{{ post.created_at }}</a>
+                                <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
+                                <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+                            </p>
+                            <h2 class="mb-4"><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h2>
+                            <div class="icon d-flex align-items-center">
+                                <div class="img" style="background-image: url({{ post.author_image.url }});"></div>
+                                <div class="position pl-3">
+                                    <h4 class="mb-0">{{ post.author }}</h4>
+                                    <span>{{ post.author_job }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row py-5">
+            <div class="col-md-12 py-md-5 text-center">
+                <a href="/blog" class="btn-custom-blog">View all articles <span class="fa fa-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-intro ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <h2>Subscribe to our Newsletter</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <form  class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control" placeholder="Enter email address">
+                                <input type="submit" value="Subscribe" class="submit px-3">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
