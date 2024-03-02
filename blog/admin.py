@@ -7,7 +7,7 @@ from .models import Post, Comment, Contact, Category
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'image', 'author', 'published_on', 'created_at')
+    list_display = ('id', 'title', 'image', 'author','view_count', 'published_on', 'created_at')
     list_display_links = ['id', 'title']
 
 class CommentAdmin(admin.ModelAdmin):

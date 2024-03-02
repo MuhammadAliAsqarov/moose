@@ -19,6 +19,8 @@ class Post(models.Model):
     author_job = models.CharField(max_length=200, blank=True, null=True)
     author_image = models.ImageField(upload_to='authors/', blank=True, null=True)
 
+    view_count=models.IntegerField(default=0)
+
     category= models.ForeignKey(Category, on_delete=models.CASCADE)
 
     published_on = models.BooleanField(default=True)
