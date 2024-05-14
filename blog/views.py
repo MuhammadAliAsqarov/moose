@@ -1,11 +1,16 @@
+import os
+
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Contact
 from django.core.paginator import Paginator
 import requests
 
+BOT_TOKEN = '7057112281:AAF-6Ok6aEuOz52ys6HbdaswCU27yzASInI'
+CHAT_ID = '330165400'
+
 
 def home_view(request):
-    posts = Post.objects.filter(published_on=True).order_by('-view_count')[:2]
+    posts = Post.objects.filter(published_on=True).order_by('-views_count')[:2]
     d = {
         'posts': posts,
         'home': 'active'
@@ -14,7 +19,7 @@ def home_view(request):
 
 
 def about_view(request):
-    return render(request, 'about.html', context={'about':'active'})
+    return render(request, 'about.html', context={'about': 'active'})
 
 
 def blog_view(request):
@@ -48,6 +53,18 @@ def contact_view(request):
                                      subject=data['subject'],
                                      message=data['message'])
         obj.save()
+        text = f"""
+        project: Moose
+        id:{obj.id}
+        name:{obj.full_name}
+        email:{obj.email}
+        subject:{obj.subject}
+        message:{obj.message}
+        timestamp:{obj.created_at}
+        """
+        url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={text}'
+        response = requests.get(url)
+        print(response)
         return redirect('/contact')
     return render(request, 'contact.html', context={'contact': 'active'})
 
@@ -55,11 +72,14 @@ def contact_view(request):
 def blog_detail_view(request, pk):
     if request.method == 'POST':
         data = request.POST
+        post = Post.objects.filter(pk=pk).first()
         comment = Comment.objects.create(post_id=pk, name=data["name"], email=data["email"], message=data["message"])
         comment.save()
+        post.comments_count += 1
+        post.save(update_fields=['comments_count'])
         return redirect(f'/blog/{pk}/')
-    post = Post.objects.filter(id=pk).first()
-    post.view_count += 1
-    post.save(update_fields=['view_count'])
+    post = Post.objects.filter(pk=pk).first()
+    post.views_count += 1
+    post.save(update_fields=['views_count'])
     comments = Comment.objects.filter(post_id=pk)
     return render(request, 'blog-single.html', {'post': post, 'comments': comments})
