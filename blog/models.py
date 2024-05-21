@@ -1,9 +1,8 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+
 
 class Category(models.Model):
-    name=models.CharField(max_length=100)
-
+    name = models.CharField(max_length=100)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -11,17 +10,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='posts/')
-    content = RichTextField()
+    content = models.TextField()
     author = models.CharField(max_length=150)
     author_job = models.CharField(max_length=200, blank=True, null=True)
     author_image = models.ImageField(upload_to='authors/', blank=True, null=True)
 
-    view_count=models.IntegerField(default=0)
+    comments_count = models.IntegerField(default=0)
+    views_count = models.IntegerField(default=0)
 
-    category= models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     published_on = models.BooleanField(default=True)
 
