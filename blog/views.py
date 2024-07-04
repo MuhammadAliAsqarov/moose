@@ -1,6 +1,6 @@
 import os
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Contact
 from django.core.paginator import Paginator
 import requests
