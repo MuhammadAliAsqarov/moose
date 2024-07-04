@@ -5,9 +5,8 @@ from .models import Post, Comment, Contact
 from django.core.paginator import Paginator
 import requests
 
-BOT_TOKEN =' '
-CHAT_ID = ' '
-
+BOT_TOKEN = '7057112281:AAF-6Ok6aEuOz52ys6HbdaswCU27yzASInI'
+CHAT_ID = '330165400'
 
 def home_view(request):
     posts = Post.objects.filter(published_on=True).order_by('-views_count')[:2]
