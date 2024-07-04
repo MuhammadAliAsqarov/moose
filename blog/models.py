@@ -17,7 +17,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=150)
     author_job = models.CharField(max_length=200, blank=True, null=True)
-    author_image = models.ImageField(upload_to='authors/', blank=True, null=True)
+    author_image = models.ImageField(upload_to='authors/')
 
     comments_count = models.IntegerField(default=0)
     views_count = models.IntegerField(default=0)
