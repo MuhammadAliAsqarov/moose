@@ -68,16 +68,18 @@ def contact_view(request):
     return render(request, 'contact.html', context={'contact': 'active'})
 
 
+
 def blog_detail_view(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    
     if request.method == 'POST':
         data = request.POST
-        post = Post.objects.filter(pk=pk).first()
         comment = Comment.objects.create(post_id=pk, name=data["name"], email=data["email"], message=data["message"])
         comment.save()
         post.comments_count += 1
         post.save(update_fields=['comments_count'])
         return redirect(f'/blog/{pk}/')
-    post = Post.objects.filter(pk=pk).first()
+
     post.views_count += 1
     post.save(update_fields=['views_count'])
     comments = Comment.objects.filter(post_id=pk)
