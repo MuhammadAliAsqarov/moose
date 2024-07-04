@@ -24,7 +24,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'image','preview_image', 'author', 'view_count', 'published_on', 'created_at')
+    list_display = ('id', 'title', 'image','preview_image', 'author', 'published_on', 'created_at')
     list_display_links = ('id', 'title')
     inlines = (CommentInline,)
     search_fields = ('title','author')
