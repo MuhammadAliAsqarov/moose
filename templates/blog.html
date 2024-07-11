@@ -19,7 +19,7 @@
         <div class="row">
             {% for post in posts %}
             <div class="col-md-6 col-lg-4 blog-wrap blog-wrap-2 px-md-5 ftco-animate">
-                <a href="moose/blog/{{ post.id }}/" class="img img-blog w-100 border d-block"
+                <a href="/moose/blog/{{ post.id }}/" class="img img-blog w-100 border d-block"
                    style="background-image: url({{ post.image.url }});">
                 </a>
                 <div class="text text-2 py-4 p-0 ftco-animate">
@@ -28,7 +28,7 @@
                         <a href="#"><span class="fa fa-user mr-2"></span></a>
                         <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span>{{ post.created_at }}</a>
                     </p>
-                    <h2 class="mb-4"><a href="moose/blog/{{ post.id }}/">{{ post.title }}</a>
+                    <h2 class="mb-4"><a href="/moose/blog/{{ post.id }}/">{{ post.title }}</a>
                     </h2>
                     <div class="icon d-flex align-items-center">
                         <div class="img" style="background-image: url({{ post.author_image.url }});"></div>
