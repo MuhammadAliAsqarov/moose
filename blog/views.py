@@ -84,3 +84,4 @@ def blog_detail_view(request, pk):
     post.save(update_fields=['views_count'])
     comments = Comment.objects.filter(post_id=pk)
     return render(request, 'blog-single.html', {'post': post, 'comments': comments})
+#hello
