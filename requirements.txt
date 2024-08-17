@@ -17,3 +17,4 @@ sqlparse==0.5.0
 uritemplate==4.1.1
 urllib3==2.2.1
 django-ckeditor
+psycopg2-binary
