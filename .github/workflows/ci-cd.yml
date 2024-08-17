@@ -42,7 +42,7 @@ jobs:
           cp ssh_key ~/.ssh/id_rsa
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
 
-          ssh root@$HOST << 'EOF'
+          ssh -T root@$HOST << 'EOF'
             set -e
             cd /root/MuhammadAli/moose
             git pull
